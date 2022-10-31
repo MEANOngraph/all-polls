@@ -14,7 +14,7 @@ import { element } from 'protractor';
   styleUrls: ['./submit-poll.component.css']
 })
 export class SubmitPollComponent implements OnInit {
-  public pollData :object = {};
+  public pollData :any ;
   public pollSubmitForm :FormGroup;
   private visitorId :string = '';
   public pollActive :boolean = true;
@@ -47,6 +47,7 @@ export class SubmitPollComponent implements OnInit {
       this.getPollData();
     })
   }
+
   getPollData(){
     this.route.params.subscribe(params => {
       this.getPollDetails(params.pollId);
@@ -55,6 +56,7 @@ export class SubmitPollComponent implements OnInit {
       });
     })
   }
+
   selectedIndex(index:string ){
     const elemts = document.querySelectorAll('.option');
     elemts.forEach((option)=>{
@@ -74,20 +76,17 @@ export class SubmitPollComponent implements OnInit {
         if(!res.response.visitors.includes(this.visitorId)){
           this.pollData = res.response;
           this.pollActive = res.response.status;
-          //console.log(res);
         }else{
           this.userSubmitPoll = true;
-          console.log("You have already submit poll");
         }
       }
     }, (err) => {
-      console.log(err);
+      this.toastr.error("Internal Server Error");
     })
   }
 
   onSubmitPoll(){
     this.pollService.submitPoll(this.pollSubmitForm.value).subscribe((res) => {
-      console.log(res);
       if (res.success) {
         this.toastr.success(res.msg);
         this.pollSubmit = true;

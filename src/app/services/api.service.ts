@@ -10,7 +10,6 @@ import { map } from "rxjs/operators";
 export class ApiService {
   api_url: string = environment.apiEndPoint;
   private token: any;
-  public env: any;
 
   constructor(private http: HttpClient,
     private router: Router,) {

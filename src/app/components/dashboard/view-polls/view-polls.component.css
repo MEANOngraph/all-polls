@@ -30,3 +30,8 @@ input{
 .inactive-poll{
     color: #ff0000a6;
 }
+
+.paginationLayout{
+    flex-direction: column;
+    flex-wrap: wrap;
+}

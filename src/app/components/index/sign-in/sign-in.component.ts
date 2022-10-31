@@ -33,12 +33,9 @@ export class SignInComponent implements OnInit {
         }
       },
         (err) => {
-          this.toastr.error(err.error);
+          this.toastr.error("Internal Server Error");
         }
       )
     }
   }
-
-
-
 }

@@ -20,8 +20,7 @@ export class SignUpComponent implements OnInit {
       password: new FormControl('', [Validators.required,
       Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$#?!@%^&*-]).{8,24}$')]),
       confirmPassword: new FormControl('', [Validators.required])
-    },
-    );
+    });
   }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class SignUpComponent implements OnInit {
         }
       },
         (err) => {
-          console.log(err);
+          this.toastr.error("Internal Server Error");
         }
       )
     }

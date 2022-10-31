@@ -12,7 +12,7 @@ export class ViewPollsComponent implements OnInit {
   limit: number = 10;
   page: number = 1;
   currentPage: number = 1;
-  collectionSize: Number = 0;
+  collectionSize: number = 0;
   public pollData: any = [];
   constructor(private pollService: PollsService,
     private router: Router) {
@@ -23,11 +23,10 @@ export class ViewPollsComponent implements OnInit {
   }
 
   getPollList() {
-    console.log(this.search, this.limit, this.page);
     this.pollService.getPolls(this.search, this.limit, this.page).subscribe((res) => {
       if (res.success) {
         this.pollData = res.response;
-        this.collectionSize = res.count;
+        this.collectionSize = Number(res.count);
       }
     })
   }

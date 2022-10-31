@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="card">
+       <div *ngIf="!pollSubmit; else submitpollBlock">
+          <div class="" *ngIf="pollActive; else elsePollDeactive">
+             <div class="" *ngIf="!userSubmitPoll; else POllSubmited">
+                <form *ngIf="pollData" [formGroup]="pollSubmitForm">
+                   <div class="row text-center question_title text-uppercase mx-3">
+                      <h2>{{pollData.question}}</h2>
+                   </div>
+                   <hr>
+                   <div class="row  form_items" *ngFor="let option of pollData.options">
+                      <div class="col-12">
+                         <ul class="list-unstyled p-0">
+                            <li id="{{option.id}}" (click)="selectedIndex(option.id)" class="option">
+                               <input  type="radio"  name="selectOption">
+                               <label for={{option.id}}>{{option.value}}</label>
+                            </li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="row justify-content-end mr-2">
+                      <button type="button"  class="btn btn-success text-uppercase text-white"  (click)="onSubmitPoll()" id="nextBtn">Submit</button>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+       <ng-template #submitpollBlock>
+          <div class="row justify-content-center" style="font-size: 22px;">
+             <b>Note: </b>Poll submitted successfully.
+          </div>
+       </ng-template>
+       <ng-template #POllSubmited>
+          <div class="row justify-content-center" style="font-size: 22px;">
+             <b>Note: </b>You have already submitted this poll.
+          </div>
+       </ng-template>
+       <ng-template #elsePollDeactive>
+          <div class="row justify-content-center" style="font-size: 22px;">
+             <b>Note: </b>Survey is no longer avilable.
+          </div>
+       </ng-template>
+    </div>
+ </div>
+    
+    

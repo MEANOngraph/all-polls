@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { AddPollsComponent } from './add-polls/add-polls.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { PollsVotingComponent } from './polls-voting/polls-voting.component';
 import { ViewPollsComponent } from './view-polls/view-polls.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: DashboardLayoutComponent,
     children:[
       { path: '', redirectTo: 'list', pathMatch: 'full'},
       { path: 'list', component: ViewPollsComponent, canActivate: [AuthGuard]},

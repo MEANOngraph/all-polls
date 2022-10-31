@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 export class AddPollsComponent implements OnInit {
   public pollForm: FormGroup;
   public optionsArray = [this.newChoice()];
+  private optionsCount : number = 1;
 
   constructor(private fb: FormBuilder,
      private pollService: PollsService,
@@ -36,7 +37,10 @@ export class AddPollsComponent implements OnInit {
   }
 
   addOptions() {
-    this.questionsOptions().push(this.newChoice());
+    if(this.optionsCount < 10){
+      this.questionsOptions().push(this.newChoice());
+      this.optionsCount++;
+    }
   }
 
   removeOptions(i: number) {
